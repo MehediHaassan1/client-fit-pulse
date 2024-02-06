@@ -1,8 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { IoSunny } from "react-icons/io5";
-import { FaMoon } from "react-icons/fa";
 
 const NavBar = () => {
     const user = false;
@@ -31,6 +29,12 @@ const NavBar = () => {
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const myTheme = localStorage.getItem("theme");
+        console.log(myTheme);
+        if (myTheme === "light") {
+            setToggle(true);
+        } else {
+            setToggle(false);
+        }
         document.querySelector("html").setAttribute("data-theme", myTheme);
     }, [theme]);
 
@@ -46,7 +50,7 @@ const NavBar = () => {
 
     return (
         <div className="h-full w-full bg-bkg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 sticky top-0 z-50">
-            <div className="navbar bg-bkg text-txt">
+            <div className="navbar bg-bkg text-txt max-w-screen-xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div
@@ -90,8 +94,11 @@ const NavBar = () => {
                     >
                         <input
                             type="checkbox"
-                            className="toggle toggle-error"
+                            className={`toggle ${
+                                toggle && "[--tglbg:green]"
+                            } border-0 outline-0`}
                             checked={toggle}
+                            readOnly
                         />
                     </div>
                     {user ? (

@@ -22,6 +22,11 @@
     }
 }
 
+.outline-txt {
+    -webkit-text-stroke: 1px #4082AE;
+    color: transparent;
+}
+
 body {
     margin: 0;
     padding: 0;

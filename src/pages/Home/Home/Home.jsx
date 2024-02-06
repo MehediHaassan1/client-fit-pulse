@@ -1,13 +1,12 @@
 import React from "react";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
     return (
         <>
-            <div className="h-screen bg-slate-700 relative">
-                <h1>hello</h1>
+            <div className="bg-bkg text-txt max-w-screen-xl mx-auto">
+                <Banner></Banner>
             </div>
-            <div className="h-screen bg bg-purple-400"></div>
-            <div className="h-screen bg-pink-400"></div>
         </>
     );
 };
