@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Convergence&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-text: 201 39 93;
+        --color-background: 210 40 2;
+        --color-primary: 204 54 71;
+        --color-secondary: 5 65 44;
+        --color-accent: 2 54 54;
+    }
+
+    :root[data-theme="light"] {
+        --color-text: 201 39 7;
+        --color-background: 210 40 98;
+        --color-primary: 204 50 53;
+        --color-secondary: 5 65 56;
+        --color-accent: 2 54 46;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Convergence", sans-serif;
+}
