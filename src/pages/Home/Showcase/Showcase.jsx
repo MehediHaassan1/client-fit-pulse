@@ -1,5 +1,3 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -26,7 +24,7 @@ const Showcase = () => {
                     SignUp
                 </button>
             </div>
-            <div className="md:w-1/2 flex items-center justify-center ">
+            <div className="md:w-1/2 mt-5 md:mt-0 flex items-center justify-center ">
                 <Swiper
                     effect={"coverflow"}
                     grabCursor={true}
