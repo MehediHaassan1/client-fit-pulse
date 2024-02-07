@@ -6,14 +6,16 @@ import "swiper/css/effect-coverflow";
 
 // import required modules
 import { EffectCoverflow, Autoplay } from "swiper/modules";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const Showcase = () => {
     return (
         <div className="min-h-screen py-10 md:py-0 md:flex flex-row-reverse items-center justify-evenly">
             <div className="md:w-1/2 flex flex-col items-start justify-center max-w-md">
-                <h1 className="font-semibold uppercase text-3xl lg:text-5xl ">
-                    activate your <span className="text-accent">potential</span>
-                </h1>
+                <SectionTitle
+                    title={"activate your"}
+                    subtitle={"Potential"}
+                ></SectionTitle>
                 <p className="my-5 lg:text-lg">
                     Transform your journey, unlock new horizons. Activate Your
                     Potential with FitPulse, where empowerment meets innovation.
