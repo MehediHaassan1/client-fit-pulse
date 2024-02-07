@@ -5,6 +5,7 @@ import About from "../About/About";
 import CourseProgrammers from "../CourseProgrammers/CourseProgrammers";
 import Services from "../Services/Services";
 import Classes from "../Classes/Classes";
+import CalculateBMI from "../CalculateBMI/CalculateBMI";
 
 const Home = () => {
     return (
@@ -20,6 +21,7 @@ const Home = () => {
             <div className="bg-bkg text-txt max-w-screen-xl mx-auto">
                 <Services></Services>
                 <Classes></Classes>
+                <CalculateBMI></CalculateBMI>
             </div>
         </>
     );
