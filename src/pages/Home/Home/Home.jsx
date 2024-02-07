@@ -4,6 +4,7 @@ import Showcase from "../Showcase/Showcase";
 import About from "../About/About";
 import CourseProgrammers from "../CourseProgrammers/CourseProgrammers";
 import Services from "../Services/Services";
+import Classes from "../Classes/Classes";
 
 const Home = () => {
     return (
@@ -18,6 +19,7 @@ const Home = () => {
             </div>
             <div className="bg-bkg text-txt max-w-screen-xl mx-auto">
                 <Services></Services>
+                <Classes></Classes>
             </div>
         </>
     );

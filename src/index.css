@@ -23,8 +23,12 @@
 }
 
 .outline-txt {
-    -webkit-text-stroke: 1px #4082AE;
+    -webkit-text-stroke: 1px #4082ae;
     color: transparent;
+}
+
+.clip-polygon {
+    clip-path: polygon(0 0, 100% 0, 51% 100%, 0% 100%);
 }
 
 body {
