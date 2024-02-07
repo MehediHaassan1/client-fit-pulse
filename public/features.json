@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Basic Plan",
+        "description": "Perfect for beginners who want to get started.",
+        "features": [
+            "Access to gym facilities",
+            "Basic workout classes",
+            "Personalized fitness assessment",
+            "Nutritional guidance",
+            "24/7 gym access"
+        ],
+        "price": "29.99"
+    },
+    {
+        "id": 2,
+        "name": "Premium Plan",
+        "description": "For those serious about fitness and looking for extra benefits.",
+        "features": [
+            "Access to gym facilities",
+            "Unlimited workout classes",
+            "Personal trainer sessions",
+            "Nutritional counseling",
+            "Exclusive gym events"
+        ],
+        "price": "49.99"
+    },
+    {
+        "id": 3,
+        "name": "Ultimate Plan",
+        "description": "Ultimate fitness experience with premium features.",
+        "features": [
+            "Access to gym facilities",
+            "Unlimited workout classes",
+            "Personal trainer sessions",
+            "Nutritional counseling",
+            "Exclusive gym events"
+        ],
+        "price": "79.99"
+    }
+]

@@ -22,7 +22,7 @@ const CalculateBMI = () => {
     };
 
     return (
-        <div className="min-h-screen px-10 py-16">
+        <div className="min-h-screen lg:px-10 lg:py-16">
             <SectionTitle
                 title={"body mass index tool"}
                 subtitle={"Measure Your Fitness Level with BMI"}
@@ -141,7 +141,7 @@ const CalculateBMI = () => {
                     </form>
                     {bmi && <p className="mt-3">Your BMI is: {bmi}</p>}
                 </div>
-                <div className="mt-5 md:mt-0 md:w-1/2">
+                <div className="my-5 md:mt-0 md:w-1/2">
                     <img
                         src="https://i.ibb.co/Pz3phgq/bmi-calculate.jpg"
                         alt="bmi-calculate"
