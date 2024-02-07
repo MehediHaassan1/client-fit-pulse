@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "_id": 1,
         "name": "Basic Plan",
         "description": "Perfect for beginners who want to get started.",
         "features": [
@@ -13,7 +13,7 @@
         "price": "29.99"
     },
     {
-        "id": 2,
+        "_id": 2,
         "name": "Premium Plan",
         "description": "For those serious about fitness and looking for extra benefits.",
         "features": [
@@ -26,7 +26,7 @@
         "price": "49.99"
     },
     {
-        "id": 3,
+        "_id": 3,
         "name": "Ultimate Plan",
         "description": "Ultimate fitness experience with premium features.",
         "features": [

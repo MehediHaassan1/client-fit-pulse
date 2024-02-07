@@ -1,0 +1,37 @@
+[
+    {
+        "_id": 1,
+        "name": "John Doe",
+        "details": "I joined this gym and it completely changed my life! The trainers are amazing, the facilities are top-notch, and the atmosphere is so motivating.",
+        "image": "https://i.ibb.co/3cpy0Mg/review-one.jpg",
+        "rating": 5
+    },
+    {
+        "_id": 2,
+        "name": "Alice Smith",
+        "details": "I've been a member of this gym for years and I couldn't be happier. The variety of classes keeps me motivated, and the trainers are always there to push me to reach my goals.",
+        "image": "https://i.ibb.co/R9G7Mfg/review-two.jpg",
+        "rating": 4.5
+    },
+    {
+        "_id": 3,
+        "name": "Michael Johnson",
+        "details": "I've tried many gyms in the past, but none compare to this one. The staff is friendly, the equipment is well-maintained, and the classes are fantastic.",
+        "image": "https://i.ibb.co/w7Yysqs/review-three.jpg",
+        "rating": 4.5
+    },
+    {
+        "_id": 4,
+        "name": "Emily Wilson",
+        "details": "I love everything about this gym - from the clean and spacious facilities to the knowledgeable trainers. It's been instrumental in helping me achieve my fitness goals.",
+        "image": "https://i.ibb.co/nC277T4/review-four.jpg",
+        "rating": 5
+    },
+    {
+        "_id": 5,
+        "name": "Elly Brown",
+        "details": "I highly recommend this gym to anyone looking to improve their fitness. The trainers are passionate, the classes are challenging yet fun, and the results speak for themselves.",
+        "image": "https://i.ibb.co/mbYVLd2/review-five.jpg",
+        "rating": 4
+    }
+]

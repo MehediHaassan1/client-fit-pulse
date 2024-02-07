@@ -7,6 +7,7 @@ import Services from "../Services/Services";
 import Classes from "../Classes/Classes";
 import CalculateBMI from "../CalculateBMI/CalculateBMI";
 import Pricing from "../Pricing/Pricing";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
     return (
@@ -24,6 +25,7 @@ const Home = () => {
                 <Classes></Classes>
                 <CalculateBMI></CalculateBMI>
                 <Pricing></Pricing>
+                <Testimonials></Testimonials>
             </div>
         </>
     );
