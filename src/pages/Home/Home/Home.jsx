@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../Banner/Banner";
 import Showcase from "../Showcase/Showcase";
 import About from "../About/About";
+import CourseProgrammers from "../CourseProgrammers/CourseProgrammers";
 
 const Home = () => {
     return (
@@ -10,6 +11,9 @@ const Home = () => {
                 <Banner></Banner>
                 <About></About>
                 <Showcase></Showcase>
+            </div>
+            <div className="bg-bkg text-txt">
+                <CourseProgrammers></CourseProgrammers>
             </div>
         </>
     );
