@@ -1,14 +1,31 @@
-import { FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => console.log(data);
+
     return (
         <div className="flex justify-center items-center min-h-screen">
             <div className="shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
                 <h2 className="text-3xl font-bold mb-6 text-center text-white">
                     <span className="text-accent">LogIn</span>
                 </h2>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="mb-6">
                         <label
                             htmlFor="email"
@@ -22,6 +39,7 @@ const Login = () => {
                                 type="email"
                                 className="shadow  border rounded w-full py-3 px-4  leading-tight focus:outline-none focus:shadow-outline bg-transparent border-accent"
                                 placeholder="Enter your email"
+                                {...register("email", { required: true })}
                             />
                         </div>
                     </div>
@@ -32,13 +50,24 @@ const Login = () => {
                         >
                             Password
                         </label>
-                        <div>
+                        <div className="relative">
                             <input
                                 id="password"
-                                type="password"
-                                className="shadow border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-transparent border-accent  "
+                                type={`${showPassword ? "text" : "password"}`}
+                                className="shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-transparent border-accent  "
                                 placeholder="Enter your password"
+                                {...register("password", { required: true })}
                             />
+                            <div
+                                className="absolute right-0 top-0 py-3 px-4 cursor-pointer"
+                                onClick={handleShowPassword}
+                            >
+                                {showPassword ? (
+                                    <FaEye className="w-5 h-5" />
+                                ) : (
+                                    <FaEyeSlash className="w-5 h-5" />
+                                )}
+                            </div>
                         </div>
                     </div>
                     <div className="flex items-center justify-center">
@@ -64,14 +93,7 @@ const Login = () => {
                         Sign up
                     </Link>
                 </p>
-                <div className="mt-4">
-                    <div className="divider">OR</div>
-                    <div className="mt-4">
-                        <button className="border w-full rounded py-3 flex items-center justify-center border-accent">
-                            <FaGoogle className="w-6 h-6 text-accent"></FaGoogle>
-                        </button>
-                    </div>
-                </div>
+                <GoogleAuth></GoogleAuth>
             </div>
         </div>
     );
