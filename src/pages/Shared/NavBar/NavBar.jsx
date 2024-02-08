@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
-    const { user } = useAuth();
+    const { user, signOutFitPulseUser } = useAuth();
+
+    const handleSignOutUser = () => {
+        signOutFitPulseUser();
+    };
     const navLinks = (
         <>
             <li>
@@ -117,7 +121,7 @@ const NavBar = () => {
                                             />
                                         ) : (
                                             <div className="flex items-center justify-center p-1">
-                                                <FaUserCircle className="w-8 h-8 bg-accent rounded-full"></FaUserCircle>
+                                                <FaUserCircle className="w-8 h-8 bg-primary rounded-full"></FaUserCircle>
                                             </div>
                                         )}
                                     </div>
@@ -132,8 +136,8 @@ const NavBar = () => {
                                     <li>
                                         <a>Settings</a>
                                     </li>
-                                    <li>
-                                        <a>Logout</a>
+                                    <li onClick={handleSignOutUser}>
+                                        <Link>Logout</Link>
                                     </li>
                                 </ul>
                             </div>

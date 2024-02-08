@@ -1,5 +1,5 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,7 @@ const Login = () => {
     const { signInFitPulseUser } = useAuth();
 
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -25,7 +26,9 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed up
                 const user = userCredential.user;
-                console.log(user);
+                if (user) {
+                    navigate("/");
+                }
             })
             .catch((error) => {
                 const errorCode = error.code;

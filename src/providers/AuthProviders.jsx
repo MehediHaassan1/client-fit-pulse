@@ -4,6 +4,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     updateProfile,
+    signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.confiq";
 import { createContext, useEffect, useState } from "react";
@@ -34,18 +35,29 @@ const AuthProviders = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    const signOutFitPulseUser = () => {
+        return signOut(auth);
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
             setLoading(false);
         });
-
+        
         return () => {
             return unsubscribe;
         };
     });
 
-    const authInfo = { user, loading, createFitPulseUser, updateFitPulseUserProfile, signInFitPulseUser };
+    const authInfo = {
+        user,
+        loading,
+        createFitPulseUser,
+        updateFitPulseUserProfile,
+        signInFitPulseUser,
+        signOutFitPulseUser,
+    };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     );
