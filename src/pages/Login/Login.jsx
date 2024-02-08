@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+    const { signInFitPulseUser } = useAuth();
+
     const [showPassword, setShowPassword] = useState(false);
+
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -13,11 +17,23 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+        signInFitPulseUser(data.email, data.password)
+            .then((userCredential) => {
+                // Signed up
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                // ..
+            });
+    };
 
     return (
         <div className="flex justify-center items-center min-h-screen">

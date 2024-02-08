@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
+    const { createFitPulseUser, updateFitPulseUserProfile, user } = useAuth();
+
+    const navigate = useNavigate();
+
+    const [passwordError, setPasswordError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-
-    const [showBMI, setShowBMI] = useState(false);
-    const handleShowBMI = () => {
-        setShowBMI(true);
-    };
-
-    const [error, setError] = useState("");
 
     const {
         register,
@@ -24,15 +24,29 @@ const SignUp = () => {
     } = useForm();
 
     const onSubmit = (data) => {
-        const imageRegex = /\.(jpg|jpeg|png)$/i;
-        const image = data?.image[0].name;
-        if (!imageRegex.test(image)) {
-            setError("Only accept jpg, jpeg or png file");
+        if (data.password !== data.cPassword) {
+            setPasswordError("Password did not matched");
             return;
         }
 
-        setError("");
-        console.log(data);
+        setPasswordError("");
+
+        const name = data.firstName + " " + data.lastName;
+        const email = data.email;
+        const password = data.password;
+
+        createFitPulseUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                if (user) {
+                    updateFitPulseUserProfile(name);
+                    navigate("/");
+                }
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
     };
 
     return (
@@ -227,6 +241,7 @@ const SignUp = () => {
                             </div>
                         </div>
                     </div>
+                    <p className="text-red-500 mt-2">{passwordError}</p>
                     <div
                         className="flex items-center gap-3 mb-6 w-fit cursor-pointer"
                         onClick={handleShowPassword}
@@ -240,7 +255,7 @@ const SignUp = () => {
                         />
                         <span htmlFor="showPassword">Show password</span>
                     </div>
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                         <label className="block mb-2">Gender</label>
                         <label className="inline-flex items-center">
                             <input
@@ -292,9 +307,9 @@ const SignUp = () => {
                                 {errors.gender.message}
                             </p>
                         )}
-                    </div>
+                    </div> */}
 
-                    <div className="flex justify-between mb-6">
+                    {/* <div className="flex justify-between mb-6">
                         <div>
                             <label
                                 htmlFor="age"
@@ -359,9 +374,9 @@ const SignUp = () => {
                                 </p>
                             )}
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className="mb-6">
+                    {/* <div className="mb-6">
                         <label
                             htmlFor="image"
                             className="block text-gray-700 text-sm font-bold mb-2"
@@ -382,8 +397,8 @@ const SignUp = () => {
                                 })}
                             />
                         </div>
-                        <p className="text-red-500 mt-2">{error}</p>
-                    </div>
+                        <p className="text-red-500 mt-2">{imageError}</p>
+                    </div> */}
 
                     <div className="flex items-center justify-center">
                         <button

@@ -1,9 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUser, FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 const NavBar = () => {
-    const user = false;
+    const { user } = useAuth();
     const navLinks = (
         <>
             <li>
@@ -29,7 +30,6 @@ const NavBar = () => {
     useEffect(() => {
         localStorage.setItem("theme", theme);
         const myTheme = localStorage.getItem("theme");
-        console.log(myTheme);
         if (myTheme === "light") {
             setToggle(true);
         } else {
@@ -110,10 +110,16 @@ const NavBar = () => {
                                     className="btn btn-ghost btn-circle avatar"
                                 >
                                     <div className="w-10 rounded-full">
-                                        <img
-                                            alt="Tailwind CSS Navbar component"
-                                            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                                        />
+                                        {user?.displayURl ? (
+                                            <img
+                                                alt="Tailwind CSS Navbar component"
+                                                src={user?.displayURl}
+                                            />
+                                        ) : (
+                                            <div className="flex items-center justify-center p-1">
+                                                <FaUserCircle className="w-8 h-8 bg-accent rounded-full"></FaUserCircle>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <ul
