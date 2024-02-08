@@ -4,9 +4,12 @@ import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import usePublicApi from "../../hooks/usePublicApi";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-    const { createFitPulseUser, updateFitPulseUserProfile, user } = useAuth();
+    const { createFitPulseUser, updateFitPulseUserProfile } = useAuth();
+    const publicApi = usePublicApi();
 
     const navigate = useNavigate();
 
@@ -36,11 +39,27 @@ const SignUp = () => {
         const password = data.password;
 
         createFitPulseUser(email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 const user = userCredential.user;
                 if (user) {
                     updateFitPulseUserProfile(name);
-                    navigate("/");
+                    console.log(user);
+                    const userInfo = {
+                        name,
+                        email: user?.email,
+                        uid: user?.uid,
+                    };
+                    const res = await publicApi.post("/user", userInfo);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Logged in successful",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        navigate("/");
+                    }
                 }
             })
             .catch((error) => {
@@ -162,6 +181,10 @@ const SignUp = () => {
                                         value: true,
                                         message: "Password is required",
                                     },
+                                    minLength: {
+                                        value: 6,
+                                        message: "Must contain 6 characters",
+                                    },
                                     validate: {
                                         upperCase: (fieldValue) => {
                                             return (
@@ -210,6 +233,11 @@ const SignUp = () => {
                                             value: true,
                                             message:
                                                 "Confirm Password is required",
+                                        },
+                                        minLength: {
+                                            value: 6,
+                                            message:
+                                                "Must contain 6 characters",
                                         },
                                         validate: {
                                             upperCase: (fieldValue) => {
