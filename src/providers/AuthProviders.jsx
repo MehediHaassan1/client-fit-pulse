@@ -5,11 +5,14 @@ import {
     onAuthStateChanged,
     updateProfile,
     signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
 } from "firebase/auth";
 import app from "../firebase/firebase.confiq";
 import { createContext, useEffect, useState } from "react";
 
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 export const AuthContext = createContext(null);
 
@@ -35,6 +38,11 @@ const AuthProviders = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    const signInWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
+    };
+
     const signOutFitPulseUser = () => {
         return signOut(auth);
     };
@@ -44,7 +52,7 @@ const AuthProviders = ({ children }) => {
             setUser(currentUser);
             setLoading(false);
         });
-        
+
         return () => {
             return unsubscribe;
         };
@@ -57,6 +65,7 @@ const AuthProviders = ({ children }) => {
         updateFitPulseUserProfile,
         signInFitPulseUser,
         signOutFitPulseUser,
+        signInWithGoogle,
     };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

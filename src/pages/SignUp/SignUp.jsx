@@ -26,7 +26,7 @@ const SignUp = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.password !== data.cPassword) {
             setPasswordError("Password did not matched");
             return;
@@ -38,34 +38,42 @@ const SignUp = () => {
         const email = data.email;
         const password = data.password;
 
-        createFitPulseUser(email, password)
-            .then(async (userCredential) => {
-                const user = userCredential.user;
-                if (user) {
-                    updateFitPulseUserProfile(name);
-                    console.log(user);
-                    const userInfo = {
-                        name,
-                        email: user?.email,
-                        uid: user?.uid,
-                    };
-                    const res = await publicApi.post("/user", userInfo);
-                    if (res.data.insertedId) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Logged in successful",
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        navigate("/");
-                    }
-                }
-            })
-            .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
+        const res = await publicApi.get(`/user?email=${email}`);
+        if (res.data.insertedId) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `${res.data.message}`,
             });
+        } else {
+            createFitPulseUser(email, password)
+                .then(async (userCredential) => {
+                    const user = userCredential.user;
+                    if (user) {
+                        updateFitPulseUserProfile(name);
+                        const userInfo = {
+                            name,
+                            email: user?.email,
+                            uid: user?.uid,
+                        };
+                        const res = await publicApi.post("/user", userInfo);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Logged in successful",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            navigate("/");
+                        }
+                    }
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    console.log(errorMessage);
+                });
+        }
     };
 
     return (

@@ -27,6 +27,7 @@ const Login = () => {
                 // Signed up
                 const user = userCredential.user;
                 if (user) {
+                    console.log(user);
                     navigate("/");
                 }
             })
