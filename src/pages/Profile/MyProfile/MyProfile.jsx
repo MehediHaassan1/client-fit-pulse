@@ -4,38 +4,63 @@ import { useForm } from "react-hook-form";
 import { FiEdit } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import usePublicApi from "../../../hooks/usePublicApi";
+import Swal from "sweetalert2";
 
 const MyProfile = () => {
-    const { userData } = useUserData();
+    const { userData, refetch } = useUserData();
     const [genderError, setGenderError] = useState(false);
     const [edit, setEdit] = useState(false);
     const publicApi = usePublicApi();
+
+    const imageHostingKey = import.meta.env.VITE_imageHosting_key;
+    const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
     const onSubmit = async (data) => {
         if (data.gender === "choose one") {
             setGenderError(true);
             return;
         }
         setGenderError(false);
-        // console.log(data);
+        const imageData = { image: data.image[0] };
+        const imageResponse = await publicApi.post(
+            `${imageHostingUrl}`,
+            imageData,
+            {
+                headers: {
+                    "content-type": "multipart/form-data",
+                },
+            }
+        );
+        const image = imageResponse?.data?.data?.display_url;
         const userInfo = {
             name: data.fullName,
             email: userData.email,
             gender: data.gender,
             age: data.age,
             bmi: data.bmi,
-            image: data.image,
+            image: image,
         };
-        console.log(userInfo);
         const response = await publicApi.patch(
             `/user/${userData?.uid}`,
             userInfo
         );
-        console.log(response.data);
+        if (response.data.modifiedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Profile has been updated",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            refetch();
+            setEdit(!edit);
+        }
     };
 
     const handleEditForm = () => {

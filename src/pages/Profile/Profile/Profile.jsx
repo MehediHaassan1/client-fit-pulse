@@ -16,7 +16,10 @@ const Profile = () => {
                         {userData?.image ? (
                             <div className="avatar">
                                 <div className="w-32 rounded-full">
-                                    <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img
+                                        src={userData?.image}
+                                        className="object-cover object-top"
+                                    />
                                 </div>
                             </div>
                         ) : (

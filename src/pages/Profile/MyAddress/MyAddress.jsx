@@ -4,9 +4,11 @@ import { FiEdit } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import useUserData from "../../../hooks/useUserData";
 import usePublicApi from "../../../hooks/usePublicApi";
+import Swal from "sweetalert2";
 
 const MyAddress = () => {
-    const { userData } = useUserData();
+    const { userData, refetch } = useUserData();
+    console.log(userData);
     const publicApi = usePublicApi();
     const {
         register,
@@ -32,7 +34,17 @@ const MyAddress = () => {
             `/user/${userData?.uid}`,
             userInfo
         );
-        console.log(response.data);
+        if (response.data.modifiedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Profile has been updated",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            refetch();
+            setEdit(!edit);
+        }
     };
     return (
         <div>
@@ -72,6 +84,7 @@ const MyAddress = () => {
                                         },
                                     })}
                                     readOnly={edit ? false : true}
+                                    defaultValue={userData.county}
                                 />
                             </div>
                             {errors.country && (
@@ -103,6 +116,7 @@ const MyAddress = () => {
                                         },
                                     })}
                                     readOnly={edit ? false : true}
+                                    defaultValue={userData.city}
                                 />
                             </div>
                             {errors.city && (
@@ -136,6 +150,7 @@ const MyAddress = () => {
                                         },
                                     })}
                                     readOnly={edit ? false : true}
+                                    defaultValue={userData.state}
                                 />
                             </div>
                             {errors.state && (
@@ -166,6 +181,7 @@ const MyAddress = () => {
                                     },
                                 })}
                                 readOnly={edit ? false : true}
+                                defaultValue={userData.postalCode}
                             />
                             {errors.postalCode && (
                                 <p className="text-red-500 mt-2">
@@ -199,6 +215,7 @@ const MyAddress = () => {
                                     },
                                 })}
                                 readOnly={edit ? false : true}
+                                defaultValue={userData.streetAddress}
                             />
                             {errors.streetAddress && (
                                 <p className="text-red-500 mt-2">
@@ -226,6 +243,7 @@ const MyAddress = () => {
                                         required: true,
                                     })}
                                     readOnly={edit ? false : true}
+                                    defaultValue={userData.apartment}
                                 />
                             </div>
                             {errors.apartment && (
