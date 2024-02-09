@@ -2,8 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiEdit } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
+import useUserData from "../../../hooks/useUserData";
+import usePublicApi from "../../../hooks/usePublicApi";
 
 const MyAddress = () => {
+    const { userData } = useUserData();
+    const publicApi = usePublicApi();
     const {
         register,
         handleSubmit,
@@ -14,8 +18,21 @@ const MyAddress = () => {
         setEdit(!edit);
     };
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async (data) => {
+        const userInfo = {
+            county: data.country,
+            city: data.city,
+            state: data.state,
+            postalCode: data.postalCode,
+            streetAddress: data.streetAddress,
+            apartment: data.apartment,
+        };
+        console.log(userInfo);
+        const response = await publicApi.patch(
+            `/user/${userData?.uid}`,
+            userInfo
+        );
+        console.log(response.data);
     };
     return (
         <div>

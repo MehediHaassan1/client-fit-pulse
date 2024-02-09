@@ -3,23 +3,39 @@ import useUserData from "../../../hooks/useUserData";
 import { useForm } from "react-hook-form";
 import { FiEdit } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
+import usePublicApi from "../../../hooks/usePublicApi";
 
 const MyProfile = () => {
     const { userData } = useUserData();
     const [genderError, setGenderError] = useState(false);
     const [edit, setEdit] = useState(false);
+    const publicApi = usePublicApi();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (data.gender === "choose one") {
             setGenderError(true);
             return;
         }
         setGenderError(false);
-        console.log(data);
+        // console.log(data);
+        const userInfo = {
+            name: data.fullName,
+            email: userData.email,
+            gender: data.gender,
+            age: data.age,
+            bmi: data.bmi,
+            image: data.image,
+        };
+        console.log(userInfo);
+        const response = await publicApi.patch(
+            `/user/${userData?.uid}`,
+            userInfo
+        );
+        console.log(response.data);
     };
 
     const handleEditForm = () => {
