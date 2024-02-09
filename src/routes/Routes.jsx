@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Profile from "../pages/Profile/Profile/Profile";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
+import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
     },
     {
         path: "profile",
-        element: <Profile></Profile>,
+        element: (
+            <PrivetRoute>
+                <Profile></Profile>
+            </PrivetRoute>
+        ),
         children: [{ path: "my-profile", element: <MyProfile></MyProfile> }],
     },
 ]);

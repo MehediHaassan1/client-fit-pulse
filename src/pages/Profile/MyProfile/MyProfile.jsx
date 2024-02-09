@@ -6,7 +6,6 @@ import { RxCross2 } from "react-icons/rx";
 
 const MyProfile = () => {
     const { userData } = useUserData();
-    const { name, email } = userData;
     const [genderError, setGenderError] = useState(false);
     const [edit, setEdit] = useState(false);
     const {
@@ -58,7 +57,7 @@ const MyProfile = () => {
                                         "bg-[#212833] border-none text-slate-700"
                                     }`}
                                     placeholder="Enter here"
-                                    defaultValue={name}
+                                    defaultValue={userData?.name}
                                     {...register("fullName", {
                                         required: {
                                             value: true,
@@ -87,7 +86,7 @@ const MyProfile = () => {
                                     type="email"
                                     className="shadow  border rounded w-full py-3 px-4  leading-tight focus:outline-none focus:shadow-outline bg-slate-700"
                                     placeholder="Enter here"
-                                    defaultValue={email}
+                                    defaultValue={userData?.email}
                                     readOnly
                                     {...register("email", {
                                         required: {
