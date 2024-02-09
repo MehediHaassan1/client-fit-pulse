@@ -54,7 +54,7 @@ const MyProfile = () => {
                                     type="text"
                                     className={`shadow  border rounded w-full py-3 px-4  leading-tight focus:outline-none focus:shadow-outline bg-slate-700 ${
                                         !edit &&
-                                        "bg-[#212833] border-none text-slate-700"
+                                        "bg-[#212833] border-none text-slate-600"
                                     }`}
                                     placeholder="Enter here"
                                     defaultValue={userData?.name}
@@ -84,7 +84,10 @@ const MyProfile = () => {
                                 <input
                                     id="email"
                                     type="email"
-                                    className="shadow  border rounded w-full py-3 px-4  leading-tight focus:outline-none focus:shadow-outline bg-slate-700"
+                                    className={`shadow  border rounded w-full py-3 px-4  leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
+                                        !edit &&
+                                        "bg-[#212833] border-none text-slate-600"
+                                    }`}
                                     placeholder="Enter here"
                                     defaultValue={userData?.email}
                                     readOnly
@@ -266,9 +269,9 @@ const MyProfile = () => {
                                 disabled={edit ? false : true}
                                 id="age"
                                 type="text"
-                                className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700   ${
+                                className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
                                     !edit &&
-                                    "bg-[#212833] border-none text-slate-700"
+                                    "bg-[#212833] border-none text-slate-600"
                                 }`}
                                 placeholder="Enter here"
                                 {...register("age", {
@@ -305,7 +308,7 @@ const MyProfile = () => {
                                 // onFocus={handleShowBMI}
                                 className={`shadow border rounded w-full py-4 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700   ${
                                     !edit &&
-                                    "bg-[#212833] border-none text-slate-700"
+                                    "bg-[#212833] border-none text-slate-600"
                                 }`}
                                 placeholder="Enter here"
                                 {...register("bmi", {
@@ -344,7 +347,7 @@ const MyProfile = () => {
                                     type="file"
                                     className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
                                         !edit &&
-                                        "bg-[#212833] border-none text-slate-700"
+                                        "bg-[#212833] border-none text-slate-600"
                                     }`}
                                     placeholder="Enter here"
                                     {...register("image", {
@@ -364,9 +367,9 @@ const MyProfile = () => {
                         <button
                             disabled={edit ? false : true}
                             type="submit"
-                            className={`font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline w-fit bg-primary/70  ${
+                            className={`font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline w-fit bg-primary/70 ${
                                 !edit &&
-                                "bg-[#212833] border-none text-slate-700"
+                                "bg-[#212833] border-none text-slate-600"
                             }`}
                         >
                             Update

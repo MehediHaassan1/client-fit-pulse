@@ -2,6 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaUser, FaUserAlt } from "react-icons/fa";
 import NavBar from "../../Shared/NavBar/NavBar";
 import useUserData from "../../../hooks/useUserData";
+import { IoLocation } from "react-icons/io5";
 
 const Profile = () => {
     const { userData } = useUserData();
@@ -36,13 +37,20 @@ const Profile = () => {
                                 {userData?.uid?.slice(0, 6)}
                             </h2>
                         </div>
-                        <div className="my-5 bg-primary">
+                        <div className="my-5 bg-primary space-y-4">
                             <NavLink
                                 className="flex items-center gap-2 border p-2 rounded-md"
                                 to="my-profile"
                             >
                                 <FaUserAlt className="w-5 h-5"></FaUserAlt> My
                                 Profile
+                            </NavLink>
+                            <NavLink
+                                className="flex items-center gap-2 border p-2 rounded-md"
+                                to="my-address"
+                            >
+                                <IoLocation className="w-5 h-5"></IoLocation> My
+                                Address
                             </NavLink>
                         </div>
                     </div>

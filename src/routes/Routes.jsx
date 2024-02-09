@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Profile from "../pages/Profile/Profile/Profile";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 import PrivetRoute from "./PrivetRoute";
+import MyAddress from "../pages/Profile/MyAddress/MyAddress";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,16 @@ const router = createBrowserRouter([
                 <Profile></Profile>
             </PrivetRoute>
         ),
-        children: [{ path: "my-profile", element: <MyProfile></MyProfile> }],
+        children: [
+            {
+                path: "my-profile",
+                element: <MyProfile></MyProfile>,
+            },
+            {
+                path: "my-address",
+                element: <MyAddress></MyAddress>,
+            },
+        ],
     },
 ]);
 
