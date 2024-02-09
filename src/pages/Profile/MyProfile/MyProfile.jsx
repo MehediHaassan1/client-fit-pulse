@@ -278,7 +278,9 @@ const MyProfile = () => {
                             <label className="inline-flex items-center w-full">
                                 <select
                                     id="gender"
-                                    defaultValue="choose one"
+                                    defaultValue={
+                                        userData?.gender || "choose one"
+                                    }
                                     className="select select-bordered rounded border-white w-full bg-slate-700 text-white focus:outline-none focus:border-white"
                                     disabled={edit ? false : true}
                                     {...register("gender", {
@@ -308,6 +310,7 @@ const MyProfile = () => {
                             </label>
                             <input
                                 disabled={edit ? false : true}
+                                defaultValue={userData?.age}
                                 id="age"
                                 type="text"
                                 className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
@@ -345,6 +348,7 @@ const MyProfile = () => {
                             <input
                                 disabled={edit ? false : true}
                                 id="bmi"
+                                defaultValue={userData?.bmi}
                                 type="text"
                                 // onFocus={handleShowBMI}
                                 className={`shadow border rounded w-full py-4 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700   ${
@@ -374,34 +378,36 @@ const MyProfile = () => {
                                 </p>
                             )}
                         </div>
-                        <div className="md:w-1/2 mb-4 md:mb-0">
-                            <label
-                                htmlFor="image"
-                                className="block text-sm font-bold mb-2"
-                            >
-                                Image
-                            </label>
-                            <div className="relative">
-                                <input
-                                    disabled={edit ? false : true}
-                                    id="image"
-                                    type="file"
-                                    className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
-                                        !edit &&
-                                        "bg-[#212833] border-none text-slate-600"
-                                    }`}
-                                    placeholder="Enter here"
-                                    {...register("image", {
-                                        required: true,
-                                    })}
-                                />
+                        {edit && (
+                            <div className="md:w-1/2 mb-4 md:mb-0">
+                                <label
+                                    htmlFor="image"
+                                    className="block text-sm font-bold mb-2"
+                                >
+                                    Image
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        disabled={edit ? false : true}
+                                        id="image"
+                                        type="file"
+                                        className={`shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  ${
+                                            !edit &&
+                                            "bg-[#212833] border-none text-slate-600"
+                                        }`}
+                                        placeholder="Enter here"
+                                        {...register("image", {
+                                            required: true,
+                                        })}
+                                    />
+                                </div>
+                                {errors.image && (
+                                    <p className="text-red-500 mt-2">
+                                        Image is required
+                                    </p>
+                                )}
                             </div>
-                            {errors.image && (
-                                <p className="text-red-500 mt-2">
-                                    Image is required
-                                </p>
-                            )}
-                        </div>
+                        )}
                     </div>
 
                     <div className="flex flex-start">
