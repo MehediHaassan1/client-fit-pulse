@@ -1,13 +1,10 @@
+import { TbPasswordUser } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
-import { FaUser, FaUserAlt } from "react-icons/fa";
 import NavBar from "../../Shared/NavBar/NavBar";
 import useUserData from "../../../hooks/useUserData";
-import { IoLocation } from "react-icons/io5";
-import { TbPasswordUser } from "react-icons/tb";
 
-const Profile = () => {
+const Settings = () => {
     const { userData } = useUserData();
-
     return (
         <>
             <NavBar></NavBar>
@@ -43,18 +40,11 @@ const Profile = () => {
                         </div>
                         <div className="my-5 bg-primary space-y-4">
                             <NavLink
-                                className="flex items-center gap-2 border p-2 rounded-md"
-                                to="my-profile"
+                                className="flex items-center gap-2 border p-2 rounded-md text-sm"
+                                to="update-password"
                             >
-                                <FaUserAlt className="w-5 h-5"></FaUserAlt> My
-                                Profile
-                            </NavLink>
-                            <NavLink
-                                className="flex items-center gap-2 border p-2 rounded-md"
-                                to="my-address"
-                            >
-                                <IoLocation className="w-5 h-5"></IoLocation> My
-                                Address
+                                <TbPasswordUser className="w-5 h-5" /> Update
+                                password
                             </NavLink>
                         </div>
                     </div>
@@ -67,4 +57,4 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+export default Settings;
