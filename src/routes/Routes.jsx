@@ -10,6 +10,7 @@ import MyAddress from "../pages/Profile/MyAddress/MyAddress";
 import Settings from "../pages/Settings/Settings/Settings";
 import UpdatePassword from "../pages/Settings/UpdatePassword/UpdatePassword";
 import DeleteAccount from "../pages/Settings/DeleteAccount/DeleteAccount";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: "signup",
                 element: <SignUp></SignUp>,
+            },
+            {
+                path: "contact",
+                element: <Contact></Contact>,
             },
         ],
     },
