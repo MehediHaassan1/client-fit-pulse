@@ -14,6 +14,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.confiq";
 import { createContext, useEffect, useState } from "react";
+import usePublicApi from "../hooks/usePublicApi";
 
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -23,6 +24,7 @@ export const AuthContext = createContext(null);
 const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const publicApi = usePublicApi();
 
     const createFitPulseUser = (email, password) => {
         setLoading(true);
@@ -70,9 +72,17 @@ const AuthProviders = ({ children }) => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
-            setLoading(false);
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            if (currentUser) {
+                setUser(currentUser);
+                setLoading(false);
+                const userEmail = { email: currentUser.email };
+                const jwtResponse = await publicApi.post("/jwt", userEmail);
+                const token = jwtResponse.data.token;
+                if (token) {
+                    localStorage.setItem("token", token);
+                }
+            }
         });
 
         return () => {

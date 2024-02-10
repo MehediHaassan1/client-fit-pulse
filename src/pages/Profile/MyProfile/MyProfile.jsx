@@ -5,12 +5,14 @@ import { FiEdit } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import usePublicApi from "../../../hooks/usePublicApi";
 import Swal from "sweetalert2";
+import usePrivetApi from "../../../hooks/usePrivetApi";
 
 const MyProfile = () => {
     const { userData, refetch } = useUserData();
     const [genderError, setGenderError] = useState(false);
     const [edit, setEdit] = useState(false);
     const publicApi = usePublicApi();
+    const privetApi = usePrivetApi();
 
     const imageHostingKey = import.meta.env.VITE_imageHosting_key;
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
@@ -46,7 +48,7 @@ const MyProfile = () => {
             bmi: data.bmi,
             image: image,
         };
-        const response = await publicApi.patch(
+        const response = await privetApi.patch(
             `/user/${userData?.uid}`,
             userInfo
         );

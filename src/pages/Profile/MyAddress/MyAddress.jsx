@@ -5,11 +5,13 @@ import { RxCross2 } from "react-icons/rx";
 import useUserData from "../../../hooks/useUserData";
 import usePublicApi from "../../../hooks/usePublicApi";
 import Swal from "sweetalert2";
+import usePrivetApi from "../../../hooks/usePrivetApi";
 
 const MyAddress = () => {
     const { userData, refetch } = useUserData();
     console.log(userData);
     const publicApi = usePublicApi();
+    const privetApi = usePrivetApi();
     const {
         register,
         handleSubmit,
@@ -30,7 +32,7 @@ const MyAddress = () => {
             apartment: data.apartment,
         };
         console.log(userInfo);
-        const response = await publicApi.patch(
+        const response = await privetApi.patch(
             `/user/${userData?.uid}`,
             userInfo
         );
