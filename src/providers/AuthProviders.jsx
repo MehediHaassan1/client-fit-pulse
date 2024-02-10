@@ -7,6 +7,9 @@ import {
     signOut,
     GoogleAuthProvider,
     signInWithPopup,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updatePassword,
 } from "firebase/auth";
 import app from "../firebase/firebase.confiq";
 import { createContext, useEffect, useState } from "react";
@@ -47,6 +50,19 @@ const AuthProviders = ({ children }) => {
         return signOut(auth);
     };
 
+    const updateUserPassword = async (oldPassword, newPassword) => {
+        const credential = EmailAuthProvider.credential(
+            user.email,
+            oldPassword
+        );
+        await reauthenticateWithCredential(user, credential);
+
+        // If reauthentication is successful, update the user's password
+        await updatePassword(user, newPassword);
+
+        return {modifiedCount: 1}
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -66,6 +82,7 @@ const AuthProviders = ({ children }) => {
         signInFitPulseUser,
         signOutFitPulseUser,
         signInWithGoogle,
+        updateUserPassword,
     };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

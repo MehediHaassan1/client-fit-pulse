@@ -7,6 +7,7 @@ import Profile from "../pages/Profile/Profile/Profile";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 import PrivetRoute from "./PrivetRoute";
 import MyAddress from "../pages/Profile/MyAddress/MyAddress";
+import UpdatePassword from "../pages/Profile/UpdatePassword/UpdatePassword";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: "my-address",
                 element: <MyAddress></MyAddress>,
+            },
+            {
+                path: "update-password",
+                element: <UpdatePassword></UpdatePassword>,
             },
         ],
     },

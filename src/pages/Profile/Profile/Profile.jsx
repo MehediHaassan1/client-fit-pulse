@@ -3,6 +3,7 @@ import { FaUser, FaUserAlt } from "react-icons/fa";
 import NavBar from "../../Shared/NavBar/NavBar";
 import useUserData from "../../../hooks/useUserData";
 import { IoLocation } from "react-icons/io5";
+import { TbPasswordUser } from "react-icons/tb";
 
 const Profile = () => {
     const { userData } = useUserData();
@@ -54,6 +55,13 @@ const Profile = () => {
                             >
                                 <IoLocation className="w-5 h-5"></IoLocation> My
                                 Address
+                            </NavLink>
+                            <NavLink
+                                className="flex items-center gap-2 border p-2 rounded-md text-sm"
+                                to="update-password"
+                            >
+                                <TbPasswordUser className="w-5 h-5" /> Update
+                                password
                             </NavLink>
                         </div>
                     </div>

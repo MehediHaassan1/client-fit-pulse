@@ -151,127 +151,6 @@ const MyProfile = () => {
                             )}
                         </div>
                     </div>
-
-                    {/* <div className="mb-2 flex justify-between">
-                        <div>
-                            <label
-                                htmlFor="password"
-                                className="block text-sm font-bold mb-2"
-                            >
-                                Password
-                            </label>
-                            <input
-                                id="password"
-                                type={`${showPassword ? "text" : "password"}`}
-                                className="shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  "
-                                placeholder="Enter here"
-                                {...register("password", {
-                                    required: {
-                                        value: true,
-                                        message: "Password is required",
-                                    },
-                                    minLength: {
-                                        value: 6,
-                                        message: "Must contain 6 characters",
-                                    },
-                                    validate: {
-                                        upperCase: (fieldValue) => {
-                                            return (
-                                                /[A-Z]/.test(fieldValue) ||
-                                                "Add 1 uppercase"
-                                            );
-                                        },
-                                        lowerCase: (fieldValue) => {
-                                            return (
-                                                /[a-z]/.test(fieldValue) ||
-                                                "Add 1 lowercase"
-                                            );
-                                        },
-                                        numberCase: (fieldValue) => {
-                                            return (
-                                                /[0-9]/.test(fieldValue) ||
-                                                "Add 1 number"
-                                            );
-                                        },
-                                    },
-                                })}
-                            />
-                            {errors.password && (
-                                <p className="text-red-500 mt-2">
-                                    {errors.password.message}
-                                </p>
-                            )}
-                        </div>
-                        <div>
-                            <label
-                                htmlFor="cPassword"
-                                className="block text-sm font-bold mb-2"
-                            >
-                                Confirm Password
-                            </label>
-                            <div className="relative">
-                                <input
-                                    id="cPassword"
-                                    type={`${
-                                        showPassword ? "text" : "password"
-                                    }`}
-                                    className="shadow border rounded w-full py-3 px-4 leading-tight focus:outline-none focus:shadow-outline bg-slate-700  "
-                                    placeholder="Enter here"
-                                    {...register("cPassword", {
-                                        required: {
-                                            value: true,
-                                            message:
-                                                "Confirm Password is required",
-                                        },
-                                        minLength: {
-                                            value: 6,
-                                            message:
-                                                "Must contain 6 characters",
-                                        },
-                                        validate: {
-                                            upperCase: (fieldValue) => {
-                                                return (
-                                                    /[A-Z]/.test(fieldValue) ||
-                                                    "Add 1 uppercase"
-                                                );
-                                            },
-                                            lowerCase: (fieldValue) => {
-                                                return (
-                                                    /[a-z]/.test(fieldValue) ||
-                                                    "Add 1 lowercase"
-                                                );
-                                            },
-                                            numberCase: (fieldValue) => {
-                                                return (
-                                                    /[0-9]/.test(fieldValue) ||
-                                                    "Add 1 number"
-                                                );
-                                            },
-                                        },
-                                    })}
-                                />
-                                {errors.cPassword && (
-                                    <p className="text-red-500 mt-2">
-                                        {errors.cPassword.message}
-                                    </p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                    <p className="text-red-500 mt-2">{passwordError}</p>
-                    <div
-                        className="flex items-center gap-3 mb-6 w-fit cursor-pointer"
-                        onClick={handleShowPassword}
-                    >
-                        <input
-                            type="checkbox"
-                            id="showPassword"
-                            checked={showPassword ? true : false}
-                            className="checkbox checkbox-xs"
-                            readOnly
-                        />
-                        <span htmlFor="showPassword">Show password</span>
-                    </div> */}
                     <div className="md:flex justify-between mb-6 gap-4">
                         <div className="md:w-1/2 mb-4 md:mb-0">
                             <label className="block mb-1">Gender</label>
@@ -367,11 +246,11 @@ const MyProfile = () => {
                                     },
                                 })}
                             />
-                            {/* {!showBMI && (
-                                <p className="text-xs mt-2">
-                                    Note: Don't know? Check first.
-                                </p>
-                            )} */}
+
+                            <p className="text-xs mt-2">
+                                Note: Don't know? Check first.
+                            </p>
+
                             {errors.bmi && (
                                 <p className="text-red-500 mt-2">
                                     {errors.bmi.message}
