@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import PricingCard from "./PricingCard";
+import usePublicApi from "../../../hooks/usePublicApi";
 
 const Pricing = () => {
-    const [pricing, setPricing] = useState([]);
+    const [membership, setMembership] = useState([]);
+    const publicApi = usePublicApi();
 
     useEffect(() => {
-        fetch("features.json")
-            .then((res) => res.json())
-            .then((data) => setPricing(data));
-    }, []);
+        const getMembershipData = async () => {
+            const membershipResponse = await publicApi.get("/membership");
+            const membershipResponseData = membershipResponse.data;
+            setMembership(membershipResponseData);
+        };
+        getMembershipData();
+    }, [publicApi]);
 
     return (
         <div className="min-h-screen">
@@ -18,7 +23,7 @@ const Pricing = () => {
                 subtitle={"Effective membership for you"}
             ></SectionTitle>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-10 text-center ">
-                {pricing.map((priceItem) => (
+                {membership.map((priceItem) => (
                     <PricingCard
                         key={priceItem._id}
                         pricingItem={priceItem}
