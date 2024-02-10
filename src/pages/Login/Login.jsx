@@ -1,15 +1,18 @@
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import GoogleAuth from "../../components/GoogleAuth/GoogleAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { signInFitPulseUser } = useAuth();
+    let location = useLocation();
+    const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
 
     const [showPassword, setShowPassword] = useState(false);
-    const navigate = useNavigate();
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -24,18 +27,25 @@ const Login = () => {
     const onSubmit = (data) => {
         signInFitPulseUser(data.email, data.password)
             .then((userCredential) => {
-                // Signed up
                 const user = userCredential.user;
                 if (user) {
-                    console.log(user);
-                    navigate("/");
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Login successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    navigate(from, { replace: true });
                 }
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage);
-                // ..
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: `${errorMessage}`,
+                });
             });
     };
 

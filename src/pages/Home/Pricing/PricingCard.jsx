@@ -9,8 +9,10 @@ const PricingCard = ({ pricingItem }) => {
             {/* <p className="my-2">{description}</p> */}
 
             <div className="my-5">
-                <span className="text-2xl mr-1">$</span>
-                <p className="text-3xl inline-block">{price}</p>
+                <span className="text-4xl mr-1">$</span>
+                <p className="text-3xl inline-block">
+                    {price}/<span className="text-2xl">month</span>
+                </p>
             </div>
 
             <div>

@@ -1,14 +1,14 @@
-import usePublicApi from "./usePublicApi";
 import useAuth from "./useAuth";
 import { useQuery } from "@tanstack/react-query";
+import usePrivetApi from "./usePrivetApi";
 
 const useUserData = () => {
-    const publicApi = usePublicApi();
+    const privetApi = usePrivetApi();
     const { user } = useAuth();
     const { refetch, data: userData } = useQuery({
         queryKey: ["userData", user?.uid],
         queryFn: async () => {
-            const res = await publicApi.get(`/user/${user?.uid}`);
+            const res = await privetApi.get(`/user/${user?.uid}`);
             return res?.data;
         },
     });

@@ -7,14 +7,19 @@ import { FaQuoteLeft } from "react-icons/fa";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import usePublicApi from "../../../hooks/usePublicApi";
 
 const Testimonials = () => {
+    const publicApi = usePublicApi();
     const [testimonials, setTestimonials] = useState([]);
     useEffect(() => {
-        fetch("reviews.json")
-            .then((res) => res.json())
-            .then((data) => setTestimonials(data));
-    }, []);
+        const getReviews = async () => {
+            const reviewsResponse = await publicApi.get("/reviews");
+            const reviews = reviewsResponse.data;
+            setTestimonials(reviews);
+        };
+        getReviews();
+    }, [publicApi]);
     return (
         <section className="min-h-screen py-16">
             <SectionTitle

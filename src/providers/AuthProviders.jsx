@@ -73,15 +73,17 @@ const AuthProviders = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
             if (currentUser) {
-                setUser(currentUser);
-                setLoading(false);
                 const userEmail = { email: currentUser.email };
                 const jwtResponse = await publicApi.post("/jwt", userEmail);
                 const token = jwtResponse.data.token;
                 if (token) {
                     localStorage.setItem("token", token);
                 }
+            } else {
+                localStorage.removeItem("token");
             }
         });
 

@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import { FaUser, FaUserCircle } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
