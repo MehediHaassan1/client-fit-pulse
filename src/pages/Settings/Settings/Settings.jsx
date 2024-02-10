@@ -2,6 +2,7 @@ import { TbPasswordUser } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import NavBar from "../../Shared/NavBar/NavBar";
 import useUserData from "../../../hooks/useUserData";
+import { TiUserDelete } from "react-icons/ti";
 
 const Settings = () => {
     const { userData } = useUserData();
@@ -45,6 +46,13 @@ const Settings = () => {
                             >
                                 <TbPasswordUser className="w-5 h-5" /> Update
                                 password
+                            </NavLink>
+                            <NavLink
+                                className="flex items-center gap-2 border p-2 rounded-md text-sm"
+                                to="delete-account"
+                            >
+                                <TiUserDelete className="w-5 h-5" /> Delete
+                                Account
                             </NavLink>
                         </div>
                     </div>

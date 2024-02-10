@@ -9,6 +9,7 @@ import PrivetRoute from "./PrivetRoute";
 import MyAddress from "../pages/Profile/MyAddress/MyAddress";
 import Settings from "../pages/Settings/Settings/Settings";
 import UpdatePassword from "../pages/Settings/UpdatePassword/UpdatePassword";
+import DeleteAccount from "../pages/Settings/DeleteAccount/DeleteAccount";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "update-password",
                 element: <UpdatePassword></UpdatePassword>,
+            },
+            {
+                path: "delete-account",
+                element: <DeleteAccount></DeleteAccount>,
             },
         ],
     },

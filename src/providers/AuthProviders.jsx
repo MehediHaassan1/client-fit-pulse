@@ -10,6 +10,7 @@ import {
     EmailAuthProvider,
     reauthenticateWithCredential,
     updatePassword,
+    deleteUser,
 } from "firebase/auth";
 import app from "../firebase/firebase.confiq";
 import { createContext, useEffect, useState } from "react";
@@ -60,7 +61,12 @@ const AuthProviders = ({ children }) => {
         // If reauthentication is successful, update the user's password
         await updatePassword(user, newPassword);
 
-        return {modifiedCount: 1}
+        return { modifiedCount: 1 };
+    };
+
+    const fitpulseUser = auth.currentUser;
+    const deleteFitPulseUser = () => {
+        return deleteUser(fitpulseUser);
     };
 
     useEffect(() => {
@@ -83,6 +89,7 @@ const AuthProviders = ({ children }) => {
         signOutFitPulseUser,
         signInWithGoogle,
         updateUserPassword,
+        deleteFitPulseUser,
     };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
