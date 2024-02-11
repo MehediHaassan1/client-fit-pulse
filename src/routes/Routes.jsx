@@ -11,6 +11,8 @@ import Settings from "../pages/Settings/Settings/Settings";
 import UpdatePassword from "../pages/Settings/UpdatePassword/UpdatePassword";
 import DeleteAccount from "../pages/Settings/DeleteAccount/DeleteAccount";
 import Contact from "../pages/Contact/Contact";
+import MembershipDetails from "../pages/MembershipDetails/MembershipDetails";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +34,18 @@ const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact></Contact>,
+            },
+            {
+                path: "/membership-details/:id",
+                element: (
+                    <PrivetRoute>
+                        <MembershipDetails></MembershipDetails>
+                    </PrivetRoute>
+                ),
+            },
+            {
+                path: "payment/:id",
+                element: <Payment></Payment>,
             },
         ],
     },

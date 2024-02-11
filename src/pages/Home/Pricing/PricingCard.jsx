@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PricingCard = ({ pricingItem }) => {
-    const { name, description, features, price } = pricingItem;
+    const { _id, name, description, features, price } = pricingItem;
     return (
         <div className="h-[400px] relative">
             <h1 className="text-xl text-accent font-bold mt-5">{name}</h1>
@@ -27,9 +28,9 @@ const PricingCard = ({ pricingItem }) => {
             </div>
 
             <div className="absolute bottom-0 w-full">
-                <button className="btn rounded-sm bg-primary hover:bg-primary/70 text-bkg border-0">
+                <Link to={`/membership-details/${_id}`} className="btn rounded-sm bg-primary hover:bg-primary/70 text-bkg border-0">
                     Join
-                </button>
+                </Link>
             </div>
         </div>
     );
