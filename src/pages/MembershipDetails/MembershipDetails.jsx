@@ -12,6 +12,11 @@ const MembershipDetails = () => {
             setMembershipDetails(res.data);
         });
     }, [id, privetApi]);
+
+    const handlePay = () => {
+        console.log(" Payment success.");
+    };
+
     return (
         <div className="max-w-screen-xl mx-auto p-4 lg:p-0">
             <SectionTitle
@@ -24,7 +29,7 @@ const MembershipDetails = () => {
                         {membershipDetails?.name}
                     </h1>
                     <Link
-                        to={`/payment/${id}`}
+                        onClick={handlePay}
                         className="btn rounded-sm bg-primary hover:bg-primary/70 text-bkg border-0"
                     >
                         Pay
@@ -34,14 +39,14 @@ const MembershipDetails = () => {
                     <span className="text-xl text-accent">Description:</span>{" "}
                     {membershipDetails?.description}
                 </p>
-                <p className="mb-3">
-                    <h4 className="text-xl text-accent">Features</h4>
+                <h4 className="mb-3">
+                    <p className="text-xl text-accent">Features</p>
                     {membershipDetails?.features?.map((feature, index) => (
                         <li style={{ listStyleType: "square" }} key={index}>
                             {feature}
                         </li>
                     ))}
-                </p>
+                </h4>
 
                 <p>
                     <span className="text-xl text-accent">Note :</span> Cancel
